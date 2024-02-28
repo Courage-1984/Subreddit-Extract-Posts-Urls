@@ -5,24 +5,17 @@ reddit = praw.Reddit(client_id='your_client_id',
                      client_secret='your_client_secret',
                      user_agent='Python:<application name>:v1.0 (by /u/<username>)')
 
-subreddit = reddit.subreddit('liminalpools')
+subreddit = reddit.subreddit('subreddit_name')
 
 links = []
 
-after = None
+submission_generator = subreddit.new(limit=None)
 
-while True:
-    submissions = subreddit.new(limit=100, params={'after': after})
-    
-    if not submissions:
-        break
+for submission in submission_generator:
+    links.append(submission.url)
 
-    for submission in submissions:
-        links.append(submission.url)
-        with open('links.txt', 'a') as f:
-            f.write(f'{submission.url}\n')
-
-    after = submission.id
-    print(f'Fetched {len(links)} links so far...')
+with open('links.txt', 'w') as f:
+    for link in links:
+        f.write(f'{link}\n')
 
 print(f'Saved {len(links)} links to links.txt')
