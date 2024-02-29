@@ -3,6 +3,11 @@ Extract Subreddit Posts' Urls
 
 # Steps
 First Download the script `subreddit_extract_post_urls.py` in the above repository.
+
+Next run the following in your terminal:
+```sh
+  pip install praw
+```
 1. Navigate to:
 ``` sh
   https://old.reddit.com/prefs/apps/
@@ -23,3 +28,5 @@ First Download the script `subreddit_extract_post_urls.py` in the above reposito
 ```
 
 Ta-da!
+
+**NOTE:** unfortunately it seems that it maxes out at 1000 urls. I will post an update if I manage to get a workaround.
